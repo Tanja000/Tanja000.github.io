@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung · Lila Pause – Tanja Reize</title>
+  <meta name="description" content="Datenschutzerklärung gemäß DSGVO und TDDDG für Lila Pause – Android App Studio (Tanja Reize)." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="shortcut icon" href="favicon.ico" />
+  <meta name="theme-color" content="#0b0716" />
+
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
+  <style>
+    :root {
+      --bg: #0b0716;
+      --bg-elevated: #140e26;
+      --card: #191230;
+      --border: rgba(192, 132, 252, 0.16);
+      --border-strong: rgba(192, 132, 252, 0.34);
+      --text: #f5f3ff;
+      --text-muted: #a89ec9;
+      --text-soft: #ddd6fe;
+      --primary: #c084fc;
+      --live: #10b981;
+      --radius: 22px;
+      --shadow: 0 20px 50px -15px rgba(8, 3, 20, 0.78);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .bg-aurora {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(192, 132, 252, 0.14) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 15%, #000 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 15%, #000 30%, transparent 100%);
+    }
+
+    .aurora-orb-1 {
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      top: -180px;
+      left: -120px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.4;
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.52), transparent 70%);
+    }
+
+    .aurora-orb-2 {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      top: 15%;
+      right: -140px;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.35;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.34), transparent 70%);
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; color: #f0abfc; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: rgba(11, 7, 22, 0.8);
+      border-bottom: 1px solid rgba(192, 132, 252, 0.14);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .brand:hover { text-decoration: none; color: var(--text); }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #c084fc, #7c3aed);
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.88rem;
+      box-shadow: 0 6px 18px rgba(168, 85, 247, 0.36);
+      flex-shrink: 0;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-link {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--text-soft);
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(25, 18, 48, 0.85);
+      border: 1px solid var(--border);
+    }
+
+    .back-link:hover {
+      text-decoration: none;
+      border-color: var(--border-strong);
+      color: #fff;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 5px 11px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .lang-btn.active {
+      background: linear-gradient(135deg, #c084fc, #9333ea);
+      color: #ffffff;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 24px 72px;
+    }
+
+    .legal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      box-shadow: var(--shadow);
+    }
+
+    .legal-eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(168, 85, 247, 0.14);
+      border: 1px solid rgba(192, 132, 252, 0.34);
+      color: #e9d5ff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: var(--text-soft);
+      margin-bottom: 24px;
+      font-size: 0.98rem;
+    }
+
+    .legal-section {
+      padding-top: 22px;
+      margin-top: 22px;
+      border-top: 1px solid var(--border);
+    }
+
+    .legal-section h2 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .legal-section p, .legal-section li {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+      margin-bottom: 8px;
+    }
+
+    .legal-section ul {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .consent-box {
+      margin-top: 12px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(20, 14, 38, 0.9);
+      border: 1px solid var(--border-strong);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .consent-status-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .consent-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .consent-btn {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border-strong);
+      background: rgba(33, 24, 62, 0.95);
+      color: var(--text);
+    }
+
+    .consent-btn.primary {
+      background: linear-gradient(135deg, #c084fc, #9333ea);
+      color: #fff;
+      border-color: rgba(216, 180, 254, 0.5);
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+
+    .footer-links {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .legal-card { padding: 24px 20px; }
+      .nav-inner { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-aurora" aria-hidden="true">
+    <div class="bg-grid"></div>
+    <div class="aurora-orb-1"></div>
+    <div class="aurora-orb-2"></div>
+  </div>
+
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">LP</span>
+        <span>Lila Pause · Android Apps</span>
+      </a>
+      <div class="nav-controls">
+        <a href="index.html" class="back-link" data-i18n="backHome">← Zur Startseite</a>
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button type="button" class="lang-btn active" data-lang="de">🇩🇪 DE</button>
+          <button type="button" class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="legal-card">
+      <span class="legal-eyebrow" data-i18n="eyebrow">DSGVO &amp; TDDDG · Stand: November 2026</span>
+      <h1 data-i18n="title">Datenschutzerklärung</h1>
+      <p class="lead" data-i18n="lead">
+        Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website gemäß der Datenschutz-Grundverordnung (DSGVO) und dem Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG).
+      </p>
+
+      <section class="legal-section">
+        <h2 data-i18n="h1">1. Verantwortliche</h2>
+        <p data-i18n="p1">
+          Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der DSGVO ist:<br />
+          <strong>Tanja Reize</strong> · Lila Pause – Android App Studio<br />
+          Wilhelm-Busch-Str. 14, 81477 München, Deutschland<br />
+          E-Mail: <a href="mailto:tanjareize@web.de">tanjareize@web.de</a>
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h2">2. Hosting über GitHub Pages &amp; Server-Logfiles</h2>
+        <p data-i18n="p2a">
+          Diese Website wird über <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA bzw. GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Niederlande) gehostet. Beim Aufruf der Website erfasst GitHub technisch erforderliche Server-Logfiles (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Datei, Browsertyp und Betriebssystem), um die technische Bereitstellung und Sicherheit des Dienstes zu gewährleisten.
+        </p>
+        <p data-i18n="p2b">
+          Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem und zuverlässigem Betrieb). GitHub ist unter dem EU-US Data Privacy Framework zertifiziert bzw. stützt Drittlandübermittlungen auf EU-Standardvertragsklauseln.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h3">3. Lokale Schriftarten &amp; lokale Browser-Speicherung</h2>
+        <p data-i18n="p3a">
+          Die eingesetzte Schriftart <em>Plus Jakarta Sans</em> ist vollständig lokal auf diesem Webserver gehostet. Es wird <strong>keine Verbindung zu Google Fonts</strong> hergestellt und Ihre IP-Adresse wird nicht an Schriftarten-Server Dritter übertragen.
+        </p>
+        <p data-i18n="p3b">
+          Im <code>localStorage</code> Ihres Browsers speichern wir technisch notwendig bzw. zur Nachweispflicht ausschließlich:
+        </p>
+        <ul>
+          <li data-i18n="li3a"><code>portfolio_lang</code>: Ihre gewählte Anzeigesprache (Deutsch/Englisch) gemäß § 25 Abs. 2 Nr. 2 TDDDG.</li>
+          <li data-i18n="li3b"><code>lp_cookie_consent</code> und <code>lp_cookie_consent_ts</code>: Ihre Entscheidung und der Zeitstempel zu den Cookie-Einstellungen gemäß Art. 6 Abs. 1 lit. c / f DSGVO und § 25 Abs. 2 Nr. 2 TDDDG.</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h4">4. Google Analytics 4 (nur nach ausdrücklicher Einwilligung)</h2>
+        <p data-i18n="p4a">
+          Diese Website bindet <strong>Google Analytics 4</strong> (Anbieter für die EU: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Muttergesellschaft: Google LLC, USA) erst dann ein, wenn Sie im Cookie-Banner aktiv auf <strong>„Akzeptieren“</strong> geklickt haben. Ohne Ihre Einwilligung wird kein Analytics-Skript geladen und es werden keine Statistik-Cookies gesetzt.
+        </p>
+        <p data-i18n="p4b">
+          Bei erteilter Einwilligung verarbeitet Google Analytics Nutzungsdaten (z. B. Seitenaufrufe, verwendetes Endgerät, ungefähre Region anhand gekürzter IP-Adresse) mithilfe von Cookies (z. B. <code>_ga</code>, <code>_ga_*</code>). Die IP-Anonymisierung ist aktiviert. Rechtsgrundlage ist Ihre jederzeit widerrufliche Einwilligung nach <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> sowie <strong>§ 25 Abs. 1 TDDDG</strong>. Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert.
+        </p>
+        <div class="consent-box">
+          <div class="consent-status-text" id="consentStatusText">Aktueller Status wird geladen …</div>
+          <div class="consent-actions">
+            <button type="button" class="consent-btn" id="btnRevokeGa" data-i18n="btnDeclineGa">Analytics deaktivieren / widerrufen</button>
+            <button type="button" class="consent-btn primary" id="btnAcceptGa" data-i18n="btnAcceptGa">Analytics aktivieren</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h5">5. Kontaktaufnahme per E-Mail</h2>
+        <p data-i18n="p5">
+          Wenn Sie per E-Mail Kontakt aufnehmen, werden Ihre Angaben zur Bearbeitung Ihrer Anfrage verarbeitet (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen/vertraglichen Anfragen bzw. Art. 6 Abs. 1 lit. f DSGVO). Ihre Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h6">6. Externe Links &amp; Android-Apps im Google Play Store</h2>
+        <p data-i18n="p6">
+          Die Buttons zum Google Play Store sowie zu LinkedIn sind reine externe Hyperlinks ohne eingebettete Tracking-Plugins. Erst wenn Sie einen Link anklicken, verlassen Sie diese Website und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Für die einzelnen Android-Apps gelten zudem die jeweiligen separaten App-Datenschutzerklärungen im Google Play Store.
+        </p>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h7">7. Ihre Rechte als betroffene Person</h2>
+        <p data-i18n="p7intro">Sie haben nach der DSGVO jederzeit folgende Rechte:</p>
+        <ul>
+          <li data-i18n="li7a">Recht auf Auskunft (Art. 15 DSGVO)</li>
+          <li data-i18n="li7b">Recht auf Berichtigung (Art. 16 DSGVO)</li>
+          <li data-i18n="li7c">Recht auf Löschung (Art. 17 DSGVO)</li>
+          <li data-i18n="li7d">Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+          <li data-i18n="li7e">Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+          <li data-i18n="li7f">Widerspruchsrecht gegen Verarbeitungen auf Basis berechtigter Interessen (Art. 21 DSGVO)</li>
+          <li data-i18n="li7g">Recht auf jederzeitigen Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)</li>
+          <li data-i18n="li7h">Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO), z. B. beim Bayerischen Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach.</li>
+        </ul>
+      </section>
+
+      <section class="legal-section">
+        <h2 data-i18n="h8">8. Verschlüsselung (HTTPS)</h2>
+        <p data-i18n="p8">
+          Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung (HTTPS).
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p><strong>Lila Pause</strong> · Tanja Reize</p>
+    <div class="footer-links">
+      <a href="index.html" data-i18n="footerHome">Startseite</a>
+      <a href="impressum.html" data-i18n="footerImprint">Impressum</a>
+    </div>
+  </footer>
+
+  <script>
+    const GA_ID = 'G-D05V5PBYYV';
+    const CONSENT_KEY = 'lp_cookie_consent';
+    const CONSENT_TS_KEY = 'lp_cookie_consent_ts';
+    window[`ga-disable-${GA_ID}`] = true;
+
+    const strings = {
+      de: {
+        backHome: '← Zur Startseite',
+        eyebrow: 'DSGVO &amp; TDDDG · Stand: November 2026',
+        title: 'Datenschutzerklärung',
+        lead: 'Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zweck der Verarbeitung personenbezogener Daten auf dieser Website gemäß der Datenschutz-Grundverordnung (DSGVO) und dem Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG).',
+        h1: '1. Verantwortliche',
+        p1: 'Verantwortlich für die Datenverarbeitung auf dieser Website im Sinne der DSGVO ist:<br /><strong>Tanja Reize</strong> · Lila Pause – Android App Studio<br />Wilhelm-Busch-Str. 14, 81477 München, Deutschland<br />E-Mail: <a href="mailto:tanjareize@web.de">tanjareize@web.de</a>',
+        h2: '2. Hosting über GitHub Pages &amp; Server-Logfiles',
+        p2a: 'Diese Website wird über <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA bzw. GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Niederlande) gehostet. Beim Aufruf der Website erfasst GitHub technisch erforderliche Server-Logfiles (z. B. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Datei, Browsertyp und Betriebssystem), um die technische Bereitstellung und Sicherheit des Dienstes zu gewährleisten.',
+        p2b: 'Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an sicherem und zuverlässigem Betrieb). GitHub ist unter dem EU-US Data Privacy Framework zertifiziert bzw. stützt Drittlandübermittlungen auf EU-Standardvertragsklauseln.',
+        h3: '3. Lokale Schriftarten &amp; lokale Browser-Speicherung',
+        p3a: 'Die eingesetzte Schriftart <em>Plus Jakarta Sans</em> ist vollständig lokal auf diesem Webserver gehostet. Es wird <strong>keine Verbindung zu Google Fonts</strong> hergestellt und Ihre IP-Adresse wird nicht an Schriftarten-Server Dritter übertragen.',
+        p3b: 'Im <code>localStorage</code> Ihres Browsers speichern wir technisch notwendig bzw. zur Nachweispflicht ausschließlich:',
+        li3a: '<code>portfolio_lang</code>: Ihre gewählte Anzeigesprache (Deutsch/Englisch) gemäß § 25 Abs. 2 Nr. 2 TDDDG.',
+        li3b: '<code>lp_cookie_consent</code> und <code>lp_cookie_consent_ts</code>: Ihre Entscheidung und der Zeitstempel zu den Cookie-Einstellungen gemäß Art. 6 Abs. 1 lit. c / f DSGVO und § 25 Abs. 2 Nr. 2 TDDDG.',
+        h4: '4. Google Analytics 4 (nur nach ausdrücklicher Einwilligung)',
+        p4a: 'Diese Website bindet <strong>Google Analytics 4</strong> (Anbieter für die EU: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Muttergesellschaft: Google LLC, USA) erst dann ein, wenn Sie im Cookie-Banner aktiv auf <strong>„Akzeptieren“</strong> geklickt haben. Ohne Ihre Einwilligung wird kein Analytics-Skript geladen und es werden keine Statistik-Cookies gesetzt.',
+        p4b: 'Bei erteilter Einwilligung verarbeitet Google Analytics Nutzungsdaten (z. B. Seitenaufrufe, verwendetes Endgerät, ungefähre Region anhand gekürzter IP-Adresse) mithilfe von Cookies (z. B. <code>_ga</code>, <code>_ga_*</code>). Die IP-Anonymisierung ist aktiviert. Rechtsgrundlage ist Ihre jederzeit widerrufliche Einwilligung nach <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> sowie <strong>§ 25 Abs. 1 TDDDG</strong>. Google LLC ist unter dem EU-US Data Privacy Framework zertifiziert.',
+        h5: '5. Kontaktaufnahme per E-Mail',
+        p5: 'Wenn Sie per E-Mail Kontakt aufnehmen, werden Ihre Angaben zur Bearbeitung Ihrer Anfrage verarbeitet (Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO bei vorvertraglichen/vertraglichen Anfragen bzw. Art. 6 Abs. 1 lit. f DSGVO). Ihre Daten werden gelöscht, sobald sie für die Bearbeitung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
+        h6: '6. Externe Links &amp; Android-Apps im Google Play Store',
+        p6: 'Die Buttons zum Google Play Store sowie zu LinkedIn sind reine externe Hyperlinks ohne eingebettete Tracking-Plugins. Erst wenn Sie einen Link anklicken, verlassen Sie diese Website und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Für die einzelnen Android-Apps gelten zudem die jeweiligen separaten App-Datenschutzerklärungen im Google Play Store.',
+        h7: '7. Ihre Rechte als betroffene Person',
+        p7intro: 'Sie haben nach der DSGVO jederzeit folgende Rechte:',
+        li7a: 'Recht auf Auskunft (Art. 15 DSGVO)',
+        li7b: 'Recht auf Berichtigung (Art. 16 DSGVO)',
+        li7c: 'Recht auf Löschung (Art. 17 DSGVO)',
+        li7d: 'Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)',
+        li7e: 'Recht auf Datenübertragbarkeit (Art. 20 DSGVO)',
+        li7f: 'Widerspruchsrecht gegen Verarbeitungen auf Basis berechtigter Interessen (Art. 21 DSGVO)',
+        li7g: 'Recht auf jederzeitigen Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art. 7 Abs. 3 DSGVO)',
+        li7h: 'Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO), z. B. beim Bayerischen Landesamt für Datenschutzaufsicht (BayLDA), Promenade 18, 91522 Ansbach.',
+        h8: '8. Verschlüsselung (HTTPS)',
+        p8: 'Diese Website nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung (HTTPS).',
+        btnDeclineGa: 'Analytics deaktivieren / widerrufen',
+        btnAcceptGa: 'Analytics aktivieren',
+        statusAccepted: 'Status: Google Analytics 4 ist aktiviert (Einwilligung erteilt).',
+        statusDeclined: 'Status: Google Analytics 4 ist deaktiviert (abgelehnt / widerrufen).',
+        statusUnset: 'Status: Google Analytics 4 ist deaktiviert (noch keine Einwilligung).',
+        footerHome: 'Startseite',
+        footerImprint: 'Impressum'
+      },
+      en: {
+        backHome: '← Back to Home',
+        eyebrow: 'GDPR &amp; German TDDDG · Updated November 2026',
+        title: 'Privacy Policy',
+        lead: 'This privacy policy explains how personal data is processed on this website in accordance with the EU General Data Protection Regulation (GDPR) and the German TDDDG.',
+        h1: '1. Data Controller',
+        p1: 'Responsible for data processing on this website under GDPR:<br /><strong>Tanja Reize</strong> · Lila Pause – Android App Studio<br />Wilhelm-Busch-Str. 14, 81477 Munich, Germany<br />Email: <a href="mailto:tanjareize@web.de">tanjareize@web.de</a>',
+        h2: '2. Hosting via GitHub Pages &amp; Server Log Files',
+        p2a: 'This website is hosted on <strong>GitHub Pages</strong> (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA / GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam, Netherlands). When you visit this site, GitHub automatically records technically required server log files (e.g., IP address, timestamp, requested URL, browser type, and operating system) to ensure secure delivery.',
+        p2b: 'Legal basis: Art. 6 (1) (f) GDPR (legitimate interest in secure and reliable operation). GitHub is certified under the EU-US Data Privacy Framework and relies on EU Standard Contractual Clauses for international transfers.',
+        h3: '3. Self-Hosted Fonts &amp; Local Browser Storage',
+        p3a: 'The typeface <em>Plus Jakarta Sans</em> is hosted locally on this web server. <strong>No connection to Google Fonts</strong> is made and your IP address is not sent to third-party font servers.',
+        p3b: 'We strictly store only the following entries in your browser’s <code>localStorage</code>:',
+        li3a: '<code>portfolio_lang</code>: your selected display language (DE/EN) pursuant to § 25 (2) no. 2 TDDDG.',
+        li3b: '<code>lp_cookie_consent</code> and <code>lp_cookie_consent_ts</code>: your consent choice and timestamp pursuant to Art. 6 (1) (c)/(f) GDPR and § 25 (2) no. 2 TDDDG.',
+        h4: '4. Google Analytics 4 (Strictly Opt-In)',
+        p4a: 'This website only loads <strong>Google Analytics 4</strong> (EU provider: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland; parent company: Google LLC, USA) after you actively click <strong>“Accept”</strong> in the cookie banner. Without your consent, no analytics script is loaded and no statistics cookies are set.',
+        p4b: 'With consent, Google Analytics processes usage data (e.g., page views, device type, approximate region using IP anonymization) via cookies (<code>_ga</code>, <code>_ga_*</code>). Legal basis: your freely revocable consent under <strong>Art. 6 (1) (a) GDPR</strong> and <strong>§ 25 (1) TDDDG</strong>. Google LLC is certified under the EU-US Data Privacy Framework.',
+        h5: '5. Contact via Email',
+        p5: 'If you contact me by email, your message details are processed solely to handle your inquiry (Art. 6 (1) (b) or (f) GDPR) and deleted once no longer needed and no statutory retention obligations apply.',
+        h6: '6. External Links &amp; Android Apps on Google Play',
+        p6: 'Buttons linking to Google Play Store and LinkedIn are plain external hyperlinks without embedded tracking widgets. Data is only transmitted to third parties if you actively follow a link. Each Android app has its own dedicated privacy policy linked on its Google Play Store listing.',
+        h7: '7. Your Rights under GDPR',
+        p7intro: 'Under GDPR, you have the following rights at any time:',
+        li7a: 'Right of access (Art. 15 GDPR)',
+        li7b: 'Right to rectification (Art. 16 GDPR)',
+        li7c: 'Right to erasure (Art. 17 GDPR)',
+        li7d: 'Right to restriction of processing (Art. 18 GDPR)',
+        li7e: 'Right to data portability (Art. 20 GDPR)',
+        li7f: 'Right to object to processing based on legitimate interests (Art. 21 GDPR)',
+        li7g: 'Right to withdraw consent at any time with future effect (Art. 7 (3) GDPR)',
+        li7h: 'Right to lodge a complaint with a supervisory authority (Art. 77 GDPR), e.g., Bavarian Data Protection Authority (BayLDA), Promenade 18, 91522 Ansbach, Germany.',
+        h8: '8. SSL/TLS Encryption (HTTPS)',
+        p8: 'For security reasons and to protect transmitted content, this website uses SSL/TLS encryption (HTTPS).',
+        btnDeclineGa: 'Disable / Withdraw Analytics',
+        btnAcceptGa: 'Enable Analytics',
+        statusAccepted: 'Status: Google Analytics 4 is enabled (consent granted).',
+        statusDeclined: 'Status: Google Analytics 4 is disabled (declined / withdrawn).',
+        statusUnset: 'Status: Google Analytics 4 is disabled (no consent given).',
+        footerHome: 'Home',
+        footerImprint: 'Legal Notice (Impressum)'
+      }
+    };
+
+    let currentLang = localStorage.getItem('portfolio_lang') || (navigator.language.startsWith('de') ? 'de' : 'en');
+
+    function clearGaCookies() {
+      window[`ga-disable-${GA_ID}`] = true;
+      const hostParts = window.location.hostname.split('.');
+      const domainCandidates = [''];
+      for (let i = 0; i < hostParts.length - 1; i++) {
+        domainCandidates.push(`; domain=.${hostParts.slice(i).join('.')}`);
+      }
+      document.cookie
+        .split(';')
+        .map((c) => c.split('=')[0].trim())
+        .filter((name) => name === '_ga' || name === '_gid' || name === '_gat' || name.startsWith('_ga_'))
+        .forEach((name) => {
+          domainCandidates.forEach((dom) => {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${dom}; SameSite=Lax`;
+          });
+        });
+    }
+
+    function updateConsentStatus() {
+      const t = strings[currentLang] || strings.de;
+      const val = localStorage.getItem(CONSENT_KEY);
+      const statusEl = document.getElementById('consentStatusText');
+      if (val === 'accepted') {
+        statusEl.textContent = t.statusAccepted;
+      } else if (val === 'rejected') {
+        statusEl.textContent = t.statusDeclined;
+      } else {
+        statusEl.textContent = t.statusUnset;
+      }
+    }
+
+    function applyLang() {
+      const t = strings[currentLang] || strings.de;
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.innerHTML = t[key];
+      });
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+      });
+      updateConsentStatus();
+    }
+
+    document.getElementById('btnRevokeGa').addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'rejected');
+      localStorage.setItem(CONSENT_TS_KEY, new Date().toISOString());
+      clearGaCookies();
+      updateConsentStatus();
+    });
+
+    document.getElementById('btnAcceptGa').addEventListener('click', () => {
+      localStorage.setItem(CONSENT_KEY, 'accepted');
+      localStorage.setItem(CONSENT_TS_KEY, new Date().toISOString());
+      window[`ga-disable-${GA_ID}`] = false;
+      updateConsentStatus();
+    });
+
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        currentLang = btn.dataset.lang;
+        localStorage.setItem('portfolio_lang', currentLang);
+        applyLang();
+      });
+    });
+
+    applyLang();
+  </script>
+</body>
+</html>
